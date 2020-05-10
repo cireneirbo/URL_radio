@@ -14,9 +14,9 @@ https://developer.mozilla.org/en-US/docs/Web/Events
 //just the src from iframe embeded links off youtube (and maybe elsewhere) could be condensed to the link string at the end of link
 //an array of all tracks available to musicPlayer
 const musicArray = [
-    "https://www.youtube-nocookie.com/embed/jQJET2nexX4",
-    "https://www.youtube-nocookie.com/embed/h8AbYuXr0J4",
-    "https://www.youtube-nocookie.com/embed/71xGwxakYVk"
+    "jQJET2nexX4",
+    "h8AbYuXr0J4",
+    "71xGwxakYVk"
 
 ];
 //randomly selects a track
@@ -24,6 +24,25 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+ function createNewVideo(newVideo) {
+    player = new YT.Player('player', {
+        height: '390',
+        width: '640',
+        videoId: newVideo,
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+}
+  
+
+
+
+document.addEventListener("DOMContentLoaded", function(){
+    
+});
+/*
 //locate the musicPlayer element
 const musicPlayer = document.getElementById("music-player");
 
@@ -37,3 +56,6 @@ document.getElementById('p').addEventListener('mouseover', function() {
     musicPlayer.setAttribute("src", musicArray[getRandomInt(musicArray.length)] + '?rel=0&amp;autoplay=1');
 });
 
+
+
+*/
