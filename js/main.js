@@ -9,6 +9,7 @@ possibly allows them to vote on the next song
 possibly add a chat room or that chat room you know about
 
 https://developer.mozilla.org/en-US/docs/Web/Events
+https://developers.google.com/youtube/iframe_api_reference#Adding_event_listener
 */
 
 //just the src from iframe embeded links off youtube (and maybe elsewhere) could be condensed to the link string at the end of link
@@ -25,6 +26,14 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+function preventRepeatingSong() {
+  let currentVideo = player.getVideoUrl();
+  let currentVideoId = currentVideo.slice(currentVideo.indexOf("v="),currentVideo.length);
+  currentVideoId = currentVideoId.slice(2, currentVideoId.length);
+  musicArray.splice(musicArray.indexOf(currentVideoId), 1);
+  musicArray.push(currentVideoId);
+}
+/*
  function createNewVideo(newVideo) {
     player = new YT.Player('player', {
         height: '390',
@@ -37,7 +46,7 @@ function getRandomInt(max) {
       });
 }
   
-
+*/
 
 
 document.addEventListener("DOMContentLoaded", function(){

@@ -24,15 +24,22 @@
 
 <body>
     <header>
-    
+        <h4>Created by Eric O&apos;Brien</h4>
     </header>
+
+
     <main>
         <div id="player"></div>
-
+        <p id="musicArrayText"></p>
     </main>
 
+
+
+    <!-- scripts-->
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <!--- In-line Script-->
     <script>
-            
         //This code loads the IFrame Player API code asynchronously.
         let tag = document.createElement('script');
             
@@ -47,7 +54,7 @@
             player = new YT.Player('player', {
                 height: '390',
                 width: '640',
-                videoId: musicArray[getRandomInt(musicArray.length)],
+                videoId: musicArray[getRandomInt(musicArray.length-1)],
                 events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
@@ -68,31 +75,21 @@
                 player.destroy();
             }
             if (done) {
-                location.reload();
-                //onYouTubeIframeAPIReady();                
+                //prevents replaying of the same song
+                preventRepeatingSong();
+                document.getElementById("musicArrayText").innerText = musicArray;
+
+                //location.reload();
+                onYouTubeIframeAPIReady();    
+                done = false;            
             }
         }
-    </script>
-
-
-
-
-
-
-
-
-
-    <!-- scripts-->
-    <script type="text/javascript" src="js/main.js"></script>
-
-    <!--- In-line Script-->
-    <script>
         
 
     </script>
     
     <footer>
-        Created by Eric O&apos;Brien
+        
     </footer>
 </body>
 </html>
