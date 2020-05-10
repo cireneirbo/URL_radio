@@ -1,7 +1,7 @@
 /*
 the plan!
 
-have an array that holds urls and uses a switch function to randomly choose one to play in an audio tab.
+have an array that holds urls and  randomly chooses one to play in an audio tab.
 allow users to add to the array of music with a form that pushes content into the array
 
 allow users to create an account
