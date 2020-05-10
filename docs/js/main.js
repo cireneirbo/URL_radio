@@ -15,8 +15,9 @@ https://developer.mozilla.org/en-US/docs/Web/Events
 //an array of all tracks available to musicPlayer
 const musicArray = [
     "jQJET2nexX4",
-    "h8AbYuXr0J4",
-    "71xGwxakYVk"
+    "KhRU5qlX3k8",
+    "71xGwxakYVk",
+    "l0y3-VYgJ8E"
 
 ];
 //randomly selects a track

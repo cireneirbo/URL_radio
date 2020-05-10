@@ -5,4 +5,11 @@ body {
 iframe {
     display: block;
     margin: 0 auto;
+    
+}
+
+footer {
+    padding-left: 5%;
+    color: white;
+    
 }
