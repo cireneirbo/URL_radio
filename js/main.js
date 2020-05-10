@@ -33,39 +33,51 @@ function preventRepeatingSong() {
   musicArray.splice(musicArray.indexOf(currentVideoId), 1);
   musicArray.push(currentVideoId);
 }
-/*
- function createNewVideo(newVideo) {
+
+
+//This code loads the IFrame Player API code asynchronously.
+let tag = document.createElement('script');
+            
+tag.src = "https://www.youtube.com/iframe_api";
+let firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+//This function creates an <iframe> (and YouTube player)
+//after the API code downloads.
+let player;
+function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '390',
         width: '640',
-        videoId: newVideo,
+        videoId: musicArray[getRandomInt(musicArray.length-1)],
         events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
         }
-      });
+    });
 }
-  
-*/
+//displays the musicArray to showcase that it is functioning properly
+document.getElementById("musicArrayText").innerText = musicArray;
 
+//The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+event.target.playVideo();
+}
 
-document.addEventListener("DOMContentLoaded", function(){
-    
-});
-/*
-//locate the musicPlayer element
-const musicPlayer = document.getElementById("music-player");
+//The API calls this function when the player's state changes.
+let done = false;
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.ENDED && !done) {
+        done = true;
+        player.destroy();
+    }
+    if (done) {
+        //prevents replaying of the same song
+        preventRepeatingSong();
+        document.getElementById("musicArrayText").innerText = musicArray;
 
-//if music has stopped, change the track
-musicPlayer.addEventListener('complete', function() {
-    musicPlayer.setAttribute("src", musicArray[2]);
-}, false);
-
-document.getElementById('p').addEventListener('mouseover', function() {
-    this.innerText = "Reset the browser!";
-    musicPlayer.setAttribute("src", musicArray[getRandomInt(musicArray.length)] + '?rel=0&amp;autoplay=1');
-});
-
-
-
-*/
+        //location.reload();
+        onYouTubeIframeAPIReady();    
+        done = false;            
+    }
+}
