@@ -81,3 +81,31 @@ function onPlayerStateChange(event) {
         done = false;            
     }
 }
+
+//update the musicArray with the ids scriptInput and scriptButton
+function updateMusicArray() {
+  let addedVideo = scriptInput.value;
+  let addedVideoId = addedVideo.slice(addedVideo.indexOf("v="),addedVideo.length);
+  addedVideoId = addedVideoId.slice(2, addedVideoId.length);
+  if (musicArray.includes(addedVideoId)) {
+    alert("Video is already included in the tracklist.");
+  } else {
+    musicArray.unshift(addedVideoId);
+    document.getElementById("musicArrayText").innerText = musicArray;
+  }
+  
+}
+
+const scriptInput = document.getElementById("scriptInput");
+
+
+const scriptButton = document.getElementById("scriptButton");
+
+scriptButton.addEventListener("click", function() {
+  if (scriptInput.value.includes("youtube.com")) {
+    updateMusicArray();
+  } else {
+    alert("Incompatible content. Please use a youtube video.");
+  }
+  
+}, false);
