@@ -1,8 +1,3 @@
-document.getElementById('track-caption').addEventListener('mouseover', function() {
-    this.innerText = "Reset the browser!";
-});
-
-
 /*
 the plan!
 
@@ -13,6 +8,32 @@ allow users to create an account
 possibly allows them to vote on the next song
 possibly add a chat room or that chat room you know about
 
-
+https://developer.mozilla.org/en-US/docs/Web/Events
 */
+
+//just the src from iframe embeded links off youtube (and maybe elsewhere) could be condensed to the link string at the end of link
+//an array of all tracks available to musicPlayer
+const musicArray = [
+    "https://www.youtube-nocookie.com/embed/jQJET2nexX4",
+    "https://www.youtube-nocookie.com/embed/h8AbYuXr0J4",
+    "https://www.youtube-nocookie.com/embed/71xGwxakYVk"
+
+];
+//randomly selects a track
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+//locate the musicPlayer element
+const musicPlayer = document.getElementById("music-player");
+
+//if music has stopped, change the track
+musicPlayer.addEventListener('complete', function() {
+    musicPlayer.setAttribute("src", musicArray[2]);
+}, false);
+
+document.getElementById('p').addEventListener('mouseover', function() {
+    this.innerText = "Reset the browser!";
+    musicPlayer.setAttribute("src", musicArray[getRandomInt(musicArray.length)] + '?rel=0&amp;autoplay=1');
+});
 
