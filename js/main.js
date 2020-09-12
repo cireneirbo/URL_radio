@@ -75,7 +75,7 @@ function updateMusicArray() {
   let addedVideoId = addedVideo.slice(addedVideo.indexOf("v="),addedVideo.length);
   addedVideoId = addedVideoId.slice(2, addedVideoId.length);
   if (musicArray.includes(addedVideoId)) {
-    alert("Video is already included in the tracklist.");
+    alert("Video is already included in the track-list.");
   } else {
     musicArray.unshift(addedVideoId);
     document.getElementById("musicArrayText").innerText = musicArray;
