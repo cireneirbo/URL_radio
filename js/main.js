@@ -1,18 +1,3 @@
-/*
-the plan!
-
-have an array that holds urls and  randomly chooses one to play in an audio tab.
-allow users to add to the array of music with a form that pushes content into the array
-
-allow users to create an account
-possibly allows them to vote on the next song
-possibly add a chat room or that chat room you know about
-
-https://developer.mozilla.org/en-US/docs/Web/Events
-https://developers.google.com/youtube/iframe_api_reference#Adding_event_listener
-*/
-
-//just the src from iframe embeded links off youtube (and maybe elsewhere) could be condensed to the link string at the end of link
 //an array of all tracks available to musicPlayer
 const musicArray = [
     "jQJET2nexX4",
@@ -21,11 +6,13 @@ const musicArray = [
     "l0y3-VYgJ8E"
 
 ];
+
 //randomly selects a track
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+//reorganizes musicArray to prevent song repetitions
 function preventRepeatingSong() {
   let currentVideo = player.getVideoUrl();
   let currentVideoId = currentVideo.slice(currentVideo.indexOf("v="),currentVideo.length);
@@ -33,7 +20,6 @@ function preventRepeatingSong() {
   musicArray.splice(musicArray.indexOf(currentVideoId), 1);
   musicArray.push(currentVideoId);
 }
-
 
 //This code loads the IFrame Player API code asynchronously.
 let tag = document.createElement('script');
@@ -56,6 +42,7 @@ function onYouTubeIframeAPIReady() {
         }
     });
 }
+
 //displays the musicArray to showcase that it is functioning properly
 document.getElementById("musicArrayText").innerText = musicArray;
 
@@ -76,13 +63,13 @@ function onPlayerStateChange(event) {
         preventRepeatingSong();
         document.getElementById("musicArrayText").innerText = musicArray;
 
-        //location.reload();
+        //notifies player that a new song can be played
         onYouTubeIframeAPIReady();    
         done = false;            
     }
 }
 
-//update the musicArray with the ids scriptInput and scriptButton
+//update the musicArray with the ids scriptInput and scriptButton and prevent duplicates
 function updateMusicArray() {
   let addedVideo = scriptInput.value;
   let addedVideoId = addedVideo.slice(addedVideo.indexOf("v="),addedVideo.length);
@@ -96,16 +83,14 @@ function updateMusicArray() {
   
 }
 
+//input validation and add input to musicArray
 const scriptInput = document.getElementById("scriptInput");
-
-
 const scriptButton = document.getElementById("scriptButton");
 
 scriptButton.addEventListener("click", function() {
   if (scriptInput.value.includes("youtube.com")) {
     updateMusicArray();
   } else {
-    alert("Incompatible content. Please use a youtube video.");
+    alert("Incompatible content. Please use a YouTube.com video.");
   }
-  
 }, false);
