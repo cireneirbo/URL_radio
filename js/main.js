@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', (event) => {
 //an array of all tracks available to musicPlayer
 const musicArray = [
     "jQJET2nexX4",
@@ -95,5 +94,3 @@ scriptButton.addEventListener("click", function() {
     alert("Incompatible content. Please use a YouTube.com video.");
   }
 }, false);
-
-});
